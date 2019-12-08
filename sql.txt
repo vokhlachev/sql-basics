@@ -1,0 +1,185 @@
+
+NOTE: EXAMPLE HOW IT WORK IN OPEN SERVER!
+h:/openserver/modules/database/MySQL-5.5/bin
+-----------------------------------------------------------------------------------------------
+1. MYSQL CONSOLE and CREATING DATABASE:
+1.1. mysql -u root -p   -   "connecting to mysql monitor"
+1.2. show databases;   -   "show databases"
+1.3. create database;   -   "create database"
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+2. DATABASE PLAN AND CREATING DATABASE AND TABLES:
+
+DATABASE PLAN:
+* biblio - "database name"
+
+* - books
+* id int NOT NULL AUTO_INCREMENT,
+* book varchar(255),
+* authors varchar(255),
+* themes_id int,
+
+* PRIMARY KEY(id)
+-----------------------------------------------------------------------------------------------
+* - themes
+* id int NOT NULL  AUTO_INCREMENT,
+* theme varchar(255),
+
+* PRIMARY KEY (id);
+-----------------------------------------------------------------------------------------------
+2.1. create database biblio;   -   "create database biblio"
+2.2. show databases;   -   "show databases"
+2.3. use biblio - "choose biblio database"
+2.4. CREATE TABLE books   -   "create table "books" in biblio database"
+   -> (
+   -> id int NOT NULL AUTO_INCREMENT,
+   -> book varchar(255),
+   -> authors varchar(255),
+   -> themes_id int,
+   ->
+   -> PRIMARY KEY(id)
+   -> );
+2.5. show tables   -   "show books table"
+2.6. CREATE TABLE theme - "create table "theme" in biblio database"
+   -> (
+   -> id int NOT NULL  AUTO_INCREMENT,
+   -> theme varchar(255),
+   -> 
+   -> PRIMARY KEY (id)
+   -> );
+2.7. show tables   -   "show theme and books table"
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+3. ADDING BOOKS AND THEMES:
+
+*Themes:
+* 1. Fairy Tales
+* 2. Fantasy
+* 3. Horror
+
+*Books:
+* 1. Bambi, a life in the woods  F. Salten 1
+* 2. Harry Potter  J.  Rowling 2
+* 3.  Riding the bullet  S. King 3
+* 4. Linux Bible C. Negus 0
+-----------------------------------------------------------------------------------------------
+3.1. INSERT INTO themes (theme) VALUES ('Fairy Tales');   -   "adding theme "Fairy Tale"  into theme table"
+3.2. select * from themes;   -   "select themes names"
+3.3. INSERT INTO themes VALUES (0, 'Fantasy');   -   "adding theme "Fantasy"  into theme table"
+3.4. INSERT INTO themes VALUES (0, 'Horror');   -   "adding theme "Horror"  into theme table"
+3.5. INSERT INTO books VALUES (0, 'Bambi, a life in the woods ', 'F. Salten  ',1);   -   "adding book  into specific theme table"
+3.6. INSERT INTO books VALUES (0, 'Harry Potter ', 'J.  Rowling  ',2);   -   "adding book  into specific theme table"
+3.7. select * from books;   - "select books names"  
+3.8. INSERT INTO books (book, authors, themes_id)  VALUES   -   "adding book  into specific theme table"
+   -> (0, 'Riding the bullet  ', 'S. King  ',3);
+3.9. INSERT INTO books (book, authors, themes_id)  VALUES   -   "adding book  into specific theme table"
+   -> (0, 'Linux Bible  ', ' C. Negus ',0);
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+4. SELECT (BEGGINING)
+4.1. use biblio
+4.2. select * from books;
+4.3. select book, authors from books;
+4.3. select id, book, authors from books WHERE id = 1;
+4.4. select id, book, authors, themes_id from books WHERE id = 1 OR themes_id=1;
+4.5. select id, book, authors, themes_id from books WHERE id = 1 AND themes_id=1;
+4.6. select id, book, authors, themes_id from books ORDER by book;
+4.7. select id, book, authors, themes_id from books ORDER by authors;
+4.8. select id, book, authors, themes_id from books ORDER by authors DESC;
+4.9. select id, book, authors, themes_id from books WHERE book='Bambi, a life in the woods';
+4.10. select id, book, authors, themes_id from books WHERE book LIKE '%Bambi%';
+4.11. select id, book, authors, themes_id from books WHERE book LIKE '%Bambi% ' OR authors LIKE '%Bambi% ' ;
+4.12. select id, book, authors, themes_id from books LIMIT 1;
+4.13. select id, book, authors, themes_id from books LIMIT 2,2;
+4.14. select id, book, authors, themes_id from books LIMIT 0,2;
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+5. SELECT (MATH,NOT)
+5.1. use biblio
+5.2. select * from books;
+5.3. select id, id*2 from books;
+5.4. select id, id*2 as d_id from books;
+5.5. select concat(book, ' ', authors) from books;
+5.6. select concat(book, ' ', authors) as BA from books;
+5.7. select id, book from books where not id=1;
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+6. SELECT (JOIN)
+6.1. select books.id, books.book, books.authors, book.themes_id,
+   -> themes.theme
+   -> from books
+   -> join themes
+   -> on books.themes_id = themes.id;
+6.2.  select books.id, books.book, books.authors, book.themes_id,
+   -> themes.theme
+   -> from books
+   -> inner join themes
+   -> on books.themes_id = themes.id;
+6.3.  select books.id, books.book, books.authors, book.themes_id,
+   -> themes.theme
+   -> from books
+   -> left join themes
+   -> on books.themes_id = themes.id;
+6.4.  select books.id, books.book, books.authors, book.themes_id,
+   -> themes.theme
+   -> from books
+   -> left join themes
+   -> on books.themes_id = themes.id;
+6.5.  select books.id, books.book, books.authors, book.themes_id,
+   -> themes.theme
+   -> from books
+   -> left outer join themes
+   -> on books.themes_id = themes.id;
+6.6.  select books.id, books.book, books.authors, book.themes_id,
+   -> themes.theme
+   -> from books
+   -> right outer join themes
+   -> on books.themes_id = themes.id;
+6.7.  select books.id, books.book ' Book ', books.authors ' Author ', book.themes_id ' Id ',
+   -> themes.theme ' Theme '
+   -> from books
+   -> right outer join themes
+   -> on books.themes_id = themes.id;
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+7. EDIT AND DELETE
+7.1. update themes
+   -> set theme=' Criminal books '
+   -> where id=3;
+7.2 select * from themes;
+7.3. select books.book, themes.theme from books join themes on books.themes_id=themes.id;
+7.4. delete from themes where id=3;
+7.5. select * from themes;
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+8. TABLE GROUPING
+         quant - "book quantity" int(10)
+         price - "price of this book"  double
+8.1. alter table books add(quant int(10));
+8.2. describe books;
+8.3. alter table books add(price double);
+8.4. alter table books add(price_old double, quant_old int(10));
+8.5. describe books;
+8.6. alter table books modify quant_old int(20);
+8.7. alter table books modify quant_old char(50);
+8.8. alter table books drop column quant_old;
+8.9. alter table books drop column price_old;
+8.10. select * from books;
+8.11. update books set price=50, quant=2 where id=3;
+8.11. update books set price=100.20, quant=2 where id=2;
+8.12. update books set price=25, quant=4 where id=1;
+8.13. update books set price=150, quant=5 where id=4;
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+9. SELECT (SUM, COUNT
+9.1. use biblio;
+9.2. select count(book) from books;
+9.3. select count(book) from books where price<100;
+9.4. select themes_id, count(book) as cbook from books group by(thmes_id);
+9.5. select sum(price*quant) from books;
+9.6.select themes_id, count(book), avr(price) from books group by(themes_id);
+9.7.select themes_id, count(book), avr(price) from books group by(themes_id) having avg(price)<100;
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+
