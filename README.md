@@ -5,7 +5,7 @@
 
   <h3 align="center"> BASIC SQL PRACTICE </h3>
   
- <a href="https://ibb.co/K9XV25D"><img src="https://i.ibb.co/9qNybph/sql.png" alt="sql" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>image hosting websites</a><br />
+ <a href="https://ibb.co/K9XV25D"><img src="https://i.ibb.co/9qNybph/sql.png" alt="sql" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'></a><br />
 <br />
  </p>
 
