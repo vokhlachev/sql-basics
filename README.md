@@ -21,7 +21,7 @@ This is small basic pure SQL practice with MySQL 5.5, there I am creating basic 
 
 1. Clone the repo or download it into your local machine
 ```sh
-https://github.com/vokhlachev/js-parser.git
+https://github.com/vokhlachev/sql-basics.git
 ```
 3. Open code in any IDE
 
