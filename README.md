@@ -1,5 +1,4 @@
-[![forthebadge](https://forthebadge.com/images/badges/uses-js.svg)](https://forthebadge.com)
-
+https://forthebadge.com/images/badges/winter-is-coming.svg
 <br />
 <p align="center">
 
